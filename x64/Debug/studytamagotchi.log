@@ -1,0 +1,11 @@
+﻿  functions.c
+C:\Users\Admin\source\repos\studytamagotchi\studytamagotchi\functions.c(13,18): warning C4013: 'strcspn' undefined; assuming extern returning int
+C:\Users\Admin\source\repos\studytamagotchi\studytamagotchi\functions.c(16,11): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Admin\source\repos\studytamagotchi\studytamagotchi\functions.c(26,5): warning C4013: 'saveUserToFile' undefined; assuming extern returning int
+C:\Users\Admin\source\repos\studytamagotchi\studytamagotchi\functions.c(34,6): error C2371: 'saveUserToFile': redefinition; different basic types
+C:\Users\Admin\source\repos\studytamagotchi\studytamagotchi\functions.c(54,5): error C2059: syntax error: 'if'
+C:\Users\Admin\source\repos\studytamagotchi\studytamagotchi\functions.c(65,5): error C2059: syntax error: 'else'
+C:\Users\Admin\source\repos\studytamagotchi\studytamagotchi\functions.c(68,1): error C2059: syntax error: '}'
+  main..c
+C:\Users\Admin\source\repos\studytamagotchi\studytamagotchi\main..c(18,9): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Generating Code...
