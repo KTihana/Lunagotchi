@@ -35,7 +35,7 @@ void addUser() {
 
 // Function to save the user to a file
 void saveUserToFile(USER* user) {
-    FILE* file = fopen("users.dat", "ab");
+    FILE* file = fopen("users.txt", "ab");
     if (file == NULL) {
         perror("Error opening file.\n");
         return;
@@ -102,22 +102,31 @@ void showLeaderboard() {
 
 // Function to choose a user from the list
 void chooseUser() {
-    FILE* file = fopen("users.dat", "rb");
+    FILE* file = fopen("users.txt", "rb");
     if (file == NULL) {
         printf("No users found.\n");
         return;
     }
 
-    USER users[100];
+    // Dynamically allocate array for users (we don't know how many users yet)
+    USER* users = malloc(sizeof(USER) * 100);  // Allow space for up to 100 users
+    if (users == NULL) {
+        printf("Memory allocation failed.\n");
+        fclose(file);
+        return;
+    }
+
     int userCount = 0;
 
     while (fread(&users[userCount], sizeof(USER), 1, file)) {
         userCount++;
+        if (userCount >= 100) break;  // Avoid buffer overflow
     }
     fclose(file);
 
     if (userCount == 0) {
         printf("No users to choose from.\n");
+        free(users);
         return;
     }
 
@@ -133,11 +142,25 @@ void chooseUser() {
 
     if (choice < 1 || choice > userCount) {
         printf("Invalid choice.\n");
+        free(users);
         return;
     }
 
-    activeUser = &users[choice - 1];  // Set active user
-    printf("Active user set to: %s\n", activeUser->name);
-}
+    // Free previously allocated user if any
+    if (activeUser != NULL) {
+        free(activeUser);
+    }
 
+    // Allocate and copy the chosen user into activeUser
+    activeUser = malloc(sizeof(USER));
+    if (activeUser == NULL) {
+        printf("Memory allocation failed.\n");
+        free(users);
+        return;
+    }
+    *activeUser = users[choice - 1];  // Copy data into dynamically allocated memory
+    printf("Active user set to: %s\n", activeUser->name);
+
+    free(users);  // Free the temporary users list
+}
 
