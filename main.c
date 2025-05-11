@@ -61,7 +61,10 @@ int main() {
             break;
         case 8:
             printf("Goodbye!\n");
-            return 0;
+            if (activeUser != NULL) {
+            free(activeUser);
+    }
+    return 0;
         default:
             printf("Invalid choice. Please try again.\n");
             break;
@@ -70,10 +73,4 @@ int main() {
 
     return 0;
 }
-
-
-
-
-
-
 
